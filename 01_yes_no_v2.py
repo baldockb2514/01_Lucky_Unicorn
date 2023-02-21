@@ -6,16 +6,14 @@ while show_instructions.lower() != "xxx":
 
     # If they say yes, output 'program continues'
 
-    yes_answers = ["yes", "y"]
-    no_answers = ["no", "n"]
-
-    if show_instructions in yes_answers:
+    if show_instructions == "yes" or show_instructions == "y":
         print("program continues")
 
-    elif show_instructions in no_answers:
+    # If they say no, output 'display instructions'
+
+    elif show_instructions == "no" or show_instructions == "n":
         print("Display instructions")
 
-    # If they say no, output 'display instructions'
     else:
         print("Please answer yes / no")
 
