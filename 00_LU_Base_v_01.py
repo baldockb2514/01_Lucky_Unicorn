@@ -1,9 +1,10 @@
 # Functions go here...
+
+# checks user response is yes/no to a given question
 def yes_no(question):
     valid = False
     while not valid:
         response = input(question).lower()
-        response = response.replace(" ", "")
 
         if response == "yes" or response == "y":
             response = "yes"
@@ -19,6 +20,7 @@ def yes_no(question):
             print("Please answer yes / no")
 
 
+# Displays instructions
 def instructions():
     print("**** How to Play ****")
     print()
@@ -27,6 +29,7 @@ def instructions():
     return ""
 
 
+# Checks users enter a integer between a low and high number
 def num_check(question, low, high):
     error = "Please enter a whole number between 1 and 10\n"
 
@@ -48,7 +51,6 @@ def num_check(question, low, high):
 
 
 # Main routine goes here...
-print()
 played_before = yes_no("Have you played this game before? ")
 
 if played_before == "no":
@@ -57,6 +59,6 @@ if played_before == "no":
 
 # Ask user how much they want to play with...
 
-how_much = num_check("How much do you want to play with? ", 0, 10)
 print()
+how_much = num_check("How much do you want to play with? ", 0, 10)
 print("You will be spending ${}".format(how_much))
