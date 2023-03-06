@@ -44,7 +44,7 @@ def instructions():
     return ""
 
 
-# Checks users enter a integer between a low and high number
+# Checks users enter an integer between a low and high number
 def num_check(question, low, high):
     error = "Please enter a whole number between 1 and 10\n"
 
@@ -75,7 +75,7 @@ def statement_decorator(statement, decoration):
     # Make the decoration above and below the statement the same length as the statement
     top_bottom = decoration * len(statement)
 
-    # add decoration to the to and bottom of the statement
+    # add decoration to the top and bottom of the statement
     print(top_bottom)
     print(statement)
     print(top_bottom)
@@ -98,17 +98,18 @@ print()
 statement_decorator("Let's get Started...", "-")
 how_much = num_check("How much do you want to play with? $", 0, 10)
 
+BALANCE_START = how_much
 balance = how_much
 
 rounds_played = 0
 
 play_again = input("Please press <enter> to play ")
+print()
 while play_again == "":
     # increase the number of rounds played
     rounds_played += 1
 
     # print the round number
-    print()
     statement_decorator(f"Round #{rounds_played}", ".")
     chosen_num = random.randint(1, 100)
 
@@ -116,27 +117,37 @@ while play_again == "":
     # if the random # is between 1 and 5, user gets a unicorn (add $4 to balance)
     if 1 <= chosen_num <= 5:
         chosen = "unicorn"
+        prize_decor = "!"
         balance += 4
     # if the random # is between 6 and 36, user gets a donkey (subtract $1 from balance)
     elif 6 <= chosen_num <= 36:
         chosen = "donkey"
+        prize_decor = "D"
         balance -= 1
     # if the number is either a horse or zebra, subtract $0.50 from the balance
     else:
         # if the number is even, set the chosen token to horse
         if chosen_num % 2 == 0:
             chosen = "horse"
+            prize_decor = "H"
         # otherwise set the token to zebra
         else:
             chosen = "zebra"
+            prize_decor = "Z"
         balance -= 0.5
-    print("You got a {}. Your balance is ${:.2f}".format(chosen, balance))
+    print()
+    statement_decorator(f"You got a {chosen}. Your balance is ${balance:.2f}", prize_decor)
 
     if balance < 1:
         play_again = "xxx"
-        print("You have run out of money")
+        print()
+        statement_decorator("Sorry you have run out of money", "V")
+        print()
     else:
         play_again = input("Press <enter> to play again or type anything to quit. ")
         print()
 
+statement_decorator("Results", "=")
+print(f'Starting balance = ${BALANCE_START:.2f}')
 print(f'Final balance = ${balance:.2f}')
+print("Thank you for playing")
