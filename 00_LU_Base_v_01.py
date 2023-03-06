@@ -98,7 +98,7 @@ print()
 statement_decorator("Let's get Started...", "-")
 how_much = num_check("How much do you want to play with? $", 0, 10)
 
-BALANCE_START = how_much
+starting_balance = how_much
 balance = how_much
 
 rounds_played = 0
@@ -138,16 +138,19 @@ while play_again == "":
     print()
     statement_decorator(f"You got a {chosen}. Your balance is ${balance:.2f}", prize_decor)
 
+    # if balance is less than $1 - user can't continue to play!
     if balance < 1:
         play_again = "xxx"
         print()
         statement_decorator("Sorry you have run out of money", "V")
         print()
+
+    # Allows user to continue to play (or quit)
     else:
         play_again = input("Press <enter> to play again or type anything to quit. ")
         print()
 
 statement_decorator("Results", "=")
-print(f'Starting balance = ${BALANCE_START:.2f}')
+print(f'Starting balance = ${starting_balance:.2f}')
 print(f'Final balance = ${balance:.2f}')
 print("Thank you for playing")
